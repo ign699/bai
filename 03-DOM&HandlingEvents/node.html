@@ -6,8 +6,23 @@
 	</head>
 	<body>
 		<script>
-			// a JavaScript code here ...
-			
+
+			let style = "border: 1px solid black;border-collapse: collapse;"
+			const table = document.createElement('table');
+			table.style=style
+
+			for(let i = 0; i < 2; i++) {
+				const row = document.createElement('tr');
+				for(let j = 0; j < 2; j++) {
+					const td1 = document.createElement('td')
+					td1.innerText = 2 * i + j + 1
+					td1.style=`text-align:center;${style}`
+					td1.width = '100px'
+					row.appendChild(td1)
+				}
+				table.appendChild(row)
+			}
+			document.getElementsByTagName('body')[0].appendChild(table)
 		</script>
 	</body>
 </html>
