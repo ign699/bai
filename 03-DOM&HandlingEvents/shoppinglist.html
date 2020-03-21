@@ -4,6 +4,7 @@
 <head>
     <title>Shopping List</title>
     <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -21,13 +22,24 @@
 
     <script>
     	function addClick() {
+            // call again so that new items can also be deleted
+            $('li').on("dblclick", function(){
+                $(this).remove();
+            });
+
             const value = document.getElementsByName("item")[0].value
             const newElement = document.createElement('li');
             newElement.innerText = value
-            const lastListItem = document.getElementsByTagName('li')[document.getElementsByTagName('li').length - 1]
-            lastListItem.parentNode.insertBefore(newElement, lastListItem.nextSibling)
+            const ol = document.getElementsByTagName('ol')[0]
+            ol.appendChild(newElement)
             document.getElementsByName("item")[0].value = ""
         }
+
+        $("ol").on('dblclick', 'li', function(e) {
+            $(this).remove();
+            e.preventDefault();
+        });
+    
 
     </script>
 </body>
