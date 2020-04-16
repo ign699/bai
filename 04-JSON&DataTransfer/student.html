@@ -7,11 +7,25 @@
 	<body>
 		<h1>Student</h1>
 		<p>Open a console and then click the button</p>
-		<input type="button" value="Display student's data">
+		<input type="button" value="Display student's data" onclick="getName()">
 		<p id="personalData"></p>
 
 		<script>
-
+			function getName(){
+				var method = 'GET';
+				var URL = 'myname.json';
+				var xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = function(){display(this);};
+				xhr.open(method, URL);
+				xhr.send();
+			}
+			function display(r){
+				if (r.readyState === 4 && r.status === 200) {
+					const personalData = document.getElementById("personalData")
+					const data = JSON.parse(r.response)
+					personalData.innerHTML = `${data.name} ${data.surname}`
+				}
+			};
 		</script>
 
 	</body>
