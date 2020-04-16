@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Gold</title>
+        <meta charset="UTF-8">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	</head>
+	<body>
+		<h1>Gold</h1>
+		<p>Open a console and then click the button</p>
+		<input type="button" value="Make a connection" onclick="connect()">
+        <canvas id="line-chart" width="800" height="450"></canvas>
+        
+		<script>
+			function connect(){
+				var method = 'GET';
+				var URL = 'http://api.nbp.pl/api/cenyzlota/last/10/?format=json';
+				var xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = function(){display(this);};
+				xhr.open(method, URL);
+				xhr.send();
+			}
+			function display(r){
+				if (r.readyState === 4 && r.status === 200) {
+					const data = JSON.parse(r.response)
+					new Chart(document.getElementById("line-chart"), {
+                        type: 'line',
+                        data: {
+                            labels: data.map(ele => ele.data),
+                            datasets: [{ 
+                                data: data.map(ele => ele.cena),
+                                label: "Gold",
+                                borderColor: "#3e95cd",
+                                fill: false
+                            }]
+                        },
+                        options: {
+                            title: {
+                            display: true,
+                            text: 'Gold price'
+                            }
+                        }
+                        });
+				}
+			};
+		</script>
+
+	</body>
+</html>
