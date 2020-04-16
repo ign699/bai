@@ -2,13 +2,17 @@
 <html>
 <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
 <body>
+  <div id="app">
+    <canvas id="chart" width="450" height="450"></canvas>
+  </div>
   <script>
     var app = new Vue({
       el: '#app',
       data: {
-        films: [
+        langs: [
           {
             language: 'Python',
             popularity: 25.95
@@ -30,7 +34,28 @@
             popularity: 7.37
           }
         ] 
-      }
+      },
+      computed: {
+            labels: function() {
+                return this.langs.map(ele => ele.language);
+            },
+            data: function () {
+                return this.langs.map(ele => ele.popularity);
+            }
+        },
+        mounted() {
+              const ctx = document.getElementById('chart');
+                const chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        datasets: [{
+                            data: this.data,
+                            backgroundColor: ['red', 'yellow', 'green', 'orange', 'blue'],
+                        }],
+                        labels: this.labels
+                    },
+                })
+        }
     });
   </script>
 </body>
