@@ -4,6 +4,15 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+  <div id="app">
+      <div style="border: 1px black solid; padding: 20px 10px; display: inline-block; text-align: center;">
+        <p style="font-weight: 900;">{{company}}</p>
+        <p>{{address}}</p>
+        <p>{{postcode}} {{city}}</p>
+        <p>tel. {{landline}}, {{mobile}}</p>
+        <a :href="web">{{web}}</a>
+      </div>
+  </div>
   <script>
     var app = new Vue({
       el: '#app',
