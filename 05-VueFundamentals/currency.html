@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <h1>Address</h1>    
+  <div id="app">
+    <table border="1" style="border-collapse: collapse;">
+        <thead>
+          <td>
+            Currency
+          </td>
+          <td>
+            Code
+          </td>
+          <td>
+            Mid
+          </td>
+        </thead>
+        <tbody>
+          <tr v-for="currency in currencies">
+            <td v-for="(value, name) in currency">
+              {{value}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        currencies: []
+      },
+      mounted: function () {
+            function connect(){
+				var method = 'GET';
+				var URL = 'http://api.nbp.pl/api/exchangerates/tables/a/?format=json';
+				var xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = function(){display(this);};
+				xhr.open(method, URL);
+				xhr.send();
+			}
+			const display = (r) => {
+				if (r.readyState === 4 && r.status === 200) {
+					const data = JSON.parse(r.response)
+            
+					this.currencies = data[0].rates
+				}
+			};
+            connect()
+      }
+    });
+  </script>
+
+</body>
+</html>
