@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div>
+        <span>Title: </span>
+        <input type="text" v-model="title" />
+    </div>
+    <div>
+        <span>Name: </span>
+        <input type="text" v-model="name" />  
+    </div>
+    <button @click="print">Zapisz</button>
+    </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        name: '',
+        title: ''
+      },
+      methods: {
+        print: function() {
+            console.log("Title: " + this.title)
+            console.log("Name: " + this.name)
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
