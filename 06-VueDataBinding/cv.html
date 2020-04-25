@@ -7,22 +7,22 @@
   <div id="app">
     <h1>CV</h1>
     <span>Imie: </span>
-    <input type="text" v-model="name"/>
+    <input type="text" v-model="form.name"/>
     <br/>
     <span>Nazwisko: </span>
-    <input type="text" v-model="surname"/>
+    <input type="text" v-model="form.surname"/>
     <br/>
     <span>Wiek: </span>
-    <input type="text" v-model.number="age" type="number"/>
+    <input type="text" v-model.number="form.age" type="number"/>
     <br/>
     <span>Płeć: </span>
-    <input type="radio" id="Mężczyzna" value="Mężczyzna" v-model="sex">
+    <input type="radio" id="Mężczyzna" value="Mężczyzna" v-model="form.sex">
     <label for="Mężczyzna">Mężczyzna</label>
-    <input type="radio" id="Kobieta" value="Kobieta" v-model="sex">
+    <input type="radio" id="Kobieta" value="Kobieta" v-model="form.sex">
     <label for="Kobieta">Kobieta</label>
     <br/>
     <span>Wykształcenie: </span>
-    <select v-model="education">
+    <select v-model="form.education">
         <option disabled value="">Wybierz Wykształcenie</option>
         <option>brak</option>
         <option>podstawowe</option>
@@ -32,30 +32,38 @@
 
     <br/>
     <span>Umiejętności: </span>
-    <input type="checkbox" id="obsługa komputera" value="obsługa komputera" v-model="skills">
+    <input type="checkbox" id="obsługa komputera" value="obsługa komputera" v-model="form.skills">
     <label for="obsługa komputera">obsługa komputera</label>
-    <input type="checkbox" id="prawo jazdy" value="prawo jazdy" v-model="skills">
+    <input type="checkbox" id="prawo jazdy" value="prawo jazdy" v-model="form.skills">
     <label for="prawo jazdy">prawo jazdy</label>
-    <input type="checkbox" id="kreatywność" value="kreatywność" v-model="skills">
+    <input type="checkbox" id="kreatywność" value="kreatywność" v-model="form.skills">
     <label for="kreatywność">kreatywność</label>
-    <input type="checkbox" id="praca w zespole" value="praca w zespole" v-model="skills">
+    <input type="checkbox" id="praca w zespole" value="praca w zespole" v-model="form.skills">
     <label for="praca w zespole">praca w zespole</label>
-
+    <br/>
+    <button @click="save">Zapisz</button>
+    <br/>
+    <button @click="read">Czytaj</button>
   </div>
   <script>
     var app = new Vue({
       el: '#app',
       data: {
-        name: '',
-        surname: '',
-        age: '',
-        sex: '',
-        education: '',
-        skills: []
+          form: {
+            name: '',
+            surname: '',
+            age: '',
+            sex: '',
+            education: '',
+            skills: []
+          }
       },
       methods: {
-        add: function() {
-          this.todos.push(this.todo);
+        save: function() {
+            localStorage.setItem('cv', JSON.stringify(this.form));
+        },
+        read: function() {
+          this.form = JSON.parse(localStorage.getItem('cv'))
         }
       }
     });
