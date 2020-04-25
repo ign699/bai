@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>CV</h1>
+    <span>Imie: </span>
+    <input type="text" v-model="name"/>
+    <br/>
+    <span>Nazwisko: </span>
+    <input type="text" v-model="surname"/>
+    <br/>
+    <span>Wiek: </span>
+    <input type="text" v-model.number="age" type="number"/>
+    <br/>
+    <span>Płeć: </span>
+    <input type="radio" id="Mężczyzna" value="Mężczyzna" v-model="sex">
+    <label for="Mężczyzna">Mężczyzna</label>
+    <input type="radio" id="Kobieta" value="Kobieta" v-model="sex">
+    <label for="Kobieta">Kobieta</label>
+    <br/>
+    <span>Wykształcenie: </span>
+    <select v-model="education">
+        <option disabled value="">Wybierz Wykształcenie</option>
+        <option>brak</option>
+        <option>podstawowe</option>
+        <option>średnie</option>
+        <option>wyższe</option>
+    </select>
+
+    <br/>
+    <span>Umiejętności: </span>
+    <input type="checkbox" id="obsługa komputera" value="obsługa komputera" v-model="skills">
+    <label for="obsługa komputera">obsługa komputera</label>
+    <input type="checkbox" id="prawo jazdy" value="prawo jazdy" v-model="skills">
+    <label for="prawo jazdy">prawo jazdy</label>
+    <input type="checkbox" id="kreatywność" value="kreatywność" v-model="skills">
+    <label for="kreatywność">kreatywność</label>
+    <input type="checkbox" id="praca w zespole" value="praca w zespole" v-model="skills">
+    <label for="praca w zespole">praca w zespole</label>
+
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        name: '',
+        surname: '',
+        age: '',
+        sex: '',
+        education: '',
+        skills: []
+      },
+      methods: {
+        add: function() {
+          this.todos.push(this.todo);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
