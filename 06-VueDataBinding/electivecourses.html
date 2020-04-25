@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div id='example-3'>
+        <input type="checkbox" id="matematyka" value="matematyka" v-model="checked">
+        <label for="matematyka">matematyka</label>
+
+        <input type="checkbox" id="angielski" value="angielski" v-model="checked">
+        <label for="angielski">angielski</label>
+
+        <input type="checkbox" id="polski" value="polski" v-model="checked">
+        <label for="polski">polski</label>
+
+
+        <input type="checkbox" id="fizyka" value="fizyka" v-model="checked">
+        <label for="fizyka">fizyka</label>
+
+        <input type="checkbox" id="chemia" value="chemia" v-model="checked">
+        <label for="chemia">chemia</label>
+
+        <br>
+        <span>Wybranych przedmiotów: {{ checked.length }}</span>
+      </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        checked: []
+      },
+      methods: {
+        increment: function() {
+            this.counter = this.counter + 1
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
