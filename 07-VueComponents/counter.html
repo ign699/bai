@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+ <div id="app">
+  <counter></counter>
+ </div>
+  <script>
+    Vue.component('counter', {
+        template: `
+          <div>
+            <span>{{counter}}</span>
+            <button @click="increment">increment</button>
+            <button @click="decrement">decrement</button>
+          </div>
+        `,
+        data: function() {
+            return {
+                counter: 0,
+            }
+        },
+        methods: {
+            increment: function() {
+                this.counter = this.counter + 1
+            },
+            decrement: function() {
+                this.counter = this.counter - 1
+            }
+        }
+      })
+
+      new Vue({
+          el: '#app'
+      });
+  </script>
+</body>
+</html>
