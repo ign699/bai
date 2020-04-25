@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <span>{{counter}}</span>
+    <button @click="increment">increment</button>
+    
+    </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        counter: 0
+      },
+      methods: {
+        increment: function() {
+            this.counter = this.counter + 1
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
