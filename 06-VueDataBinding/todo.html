@@ -11,9 +11,9 @@
     <button type="button" @click="add()">Add</button>
     <h3>To Do List</h3>
     <ol>
-      <li>...</li>
-      <li>...</li>
-      <li>...</li>
+      <li v-for="todoitem in todos" :key="todoitem">
+        {{ todoitem}}
+      </li>
     </ol>
   </div>
   <script>
