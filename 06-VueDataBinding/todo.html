@@ -11,7 +11,7 @@
     <button type="button" @click="add()">Add</button>
     <h3>To Do List</h3>
     <ol>
-      <li v-for="todoitem in todos" :key="todoitem">
+      <li v-for="todoitem in todos" :key="todoitem" v-on:dblclick="remove(todoitem)">
         {{ todoitem}}
       </li>
     </ol>
@@ -26,6 +26,9 @@
       methods: {
         add: function() {
           this.todos.push(this.todo);
+        },
+        remove: function(todo) {
+          this.todos = this.todos.filter(td => todo !== td);
         }
       }
     });
