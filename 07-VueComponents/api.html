@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+</head>
+<body>
+ <div id="app">
+  <api></api>
+ </div>
+  <script>
+    Vue.component('api', {
+        template: `
+          <div>
+            <h1>Gold</h1>
+            <canvas id="line-chart" width="800" height="450"></canvas>
+          </div>
+        `,
+        methods: {
+            connect: function(){
+                var self = this;
+				var method = 'GET';
+				var URL = 'http://api.nbp.pl/api/cenyzlota/last/10/?format=json';
+				var xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = function(){self.display(this);};
+				xhr.open(method, URL);
+				xhr.send();
+			},
+			display: function(r){
+				if (r.readyState === 4 && r.status === 200) {
+					const data = JSON.parse(r.response)
+					new Chart(document.getElementById("line-chart"), {
+                        type: 'line',
+                        data: {
+                            labels: data.map(ele => ele.data),
+                            datasets: [{ 
+                                data: data.map(ele => ele.cena),
+                                label: "Gold",
+                                borderColor: "#3e95cd",
+                                fill: false
+                            }]
+                        },
+                        options: {
+                            title: {
+                            display: true,
+                            text: 'Gold price'
+                            }
+                        }
+                    });
+				}
+			}
+        },
+        mounted: function() {
+            this.connect()
+        }
+      })
+
+      new Vue({
+          el: '#app'
+      });
+  </script>
+</body>
+</html>
