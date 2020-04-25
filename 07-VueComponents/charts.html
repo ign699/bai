@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+</head>
+<body>
+ <div id="app">
+  <chart v-bind:langs="langs"></chart>
+ </div>
+  <script>
+    Vue.component('chart', {
+        template: `
+          <div>
+            <canvas id="chart" width="450" height="450"></canvas>
+          </div>
+        `,
+        props: {
+            langs: {
+                type: Array,
+                default: []
+            },
+        },
+        computed: {
+            labels: function() {
+                return this.langs.map(ele => ele.language);
+            },
+            data: function () {
+                return this.langs.map(ele => ele.popularity);
+            }
+        },
+        mounted() {
+            const ctx = document.getElementById('chart');
+            const chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                datasets: [{
+                    data: this.data,
+                    backgroundColor: ['red', 'yellow', 'green', 'orange', 'blue'],
+                }],
+                labels: this.labels
+                },
+            })
+        }
+      })
+
+      new Vue({
+          el: '#app',
+          data: {
+              langs: [
+                    {
+                        language: 'Python',
+                        popularity: 25.95
+                    },
+                    {
+                        language: 'Java',
+                        popularity: 21.42
+                    },
+                    {
+                        language: 'JavaScript',
+                        popularity: 8.26
+                    },
+                    {
+                        language: 'C#',
+                        popularity: 7.62
+                    },
+                    {
+                        language: 'Php',
+                        popularity: 7.37
+                    }
+            ] 
+          }
+      });
+  </script>
+</body>
+</html>
