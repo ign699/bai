@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+ <div id="app">
+  <mission-impossile></mission-impossile>
+  <fellowship></fellowship>
+  <scarface></scarface>
+ </div>
+  <script>
+    Vue.component('mission-impossile', {
+        template: `
+          <div>
+            <h1>Tytuł: Mission Impossbile</h1>
+            <p>Reżyser: Brian De Palma</p>
+            <p>Rok produkcji: 1996</p>
+          </div>
+        `
+      })
+
+      Vue.component('fellowship', {
+        template: `
+          <div>
+            <h1>Tytuł: The Lord of the Rings: The Fellowship of the Ring</h1>
+            <p>Reżyser: Peter Jackson</p>
+            <p>Rok produkcji: 2001</p>
+          </div>
+        `
+      })
+
+      Vue.component('scarface', {
+        template: `
+          <div>
+            <h1>Tytuł: Scarface</h1>
+            <p>Reżyser: Brian De Palma</p>
+            <p>Rok produkcji: 1983</p>
+          </div>
+        `
+      })
+      new Vue({
+          el: '#app'
+      });
+  </script>
+</body>
+</html>
